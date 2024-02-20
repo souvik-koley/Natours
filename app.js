@@ -21,6 +21,8 @@ const { title } = require('process');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -67,7 +69,7 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(hpp({
     whitelist: ['duration', 'ratingsAverage', 'ratingsQuantity', 'maxGroupSize', 'price']
-})); 
+}));
 
 app.use(compression());
 
